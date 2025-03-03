@@ -23,6 +23,7 @@ function Contact() {
             event.target.reset();      
           })
           .catch((error) => console.error("Form submission error", error));
+          console.log([...formData.entries()]);
       };
       
 
@@ -47,8 +48,8 @@ function Contact() {
                     <input type="text" name='name' placeholder="Enter your name" required/>
                     <label>Email</label>
                     <input type="email" name="email" placeholder='Enter your email' required/>
-                    <label>Write your massage here</label>
-                    <textarea name="massage" rows="6" placeholder='Enter your massage' required></textarea>
+                    <label>Write your message here</label>
+                    <textarea name="message" rows="6" placeholder='Enter your message' required></textarea>
                    <button type='submit' className='btn dark-btn'>Submit now <img src={white_arrow} alt="" /></button>
             </form>
             <span>{result}</span>
