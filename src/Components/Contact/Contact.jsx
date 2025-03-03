@@ -16,7 +16,7 @@ function Contact() {
           body: new URLSearchParams(formData).toString(),
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         })
-          .then(() => alert("Form submitted successfully!"))
+          .then(() => alert("Form submitted successfully!",event.target.reset()))
           .catch((error) => console.error("Form submission error", error));
       };
       
