@@ -7,8 +7,10 @@ import location_icon from '../../assets/location-icon.png'
 import white_arrow from '../../assets/white-arrow.png'
 
 function Contact() {
+    const [result, setResult] = React.useState("");
     const handleSubmit = (event) => {
         event.preventDefault();
+        setResult("Sending....")
         const formData = new FormData(event.target);
       
         fetch("/", {
@@ -16,7 +18,10 @@ function Contact() {
           body: new URLSearchParams(formData).toString(),
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         })
-          .then(() => alert("Form submitted successfully!",event.target.reset()))
+          .then(() => {
+            setResult("Email sent Successfully");
+            event.target.reset();      
+          })
           .catch((error) => console.error("Form submission error", error));
       };
       
@@ -41,11 +46,12 @@ function Contact() {
                 <label>Your name</label>
                     <input type="text" name='name' placeholder="Enter your name" required/>
                     <label>Email</label>
-                    <input type="tel" name="email" placeholder='Enter your email' required/>
+                    <input type="email" name="email" placeholder='Enter your email' required/>
                     <label>Write your massage here</label>
                     <textarea name="massage" rows="6" placeholder='Enter your massage' required></textarea>
                    <button type='submit' className='btn dark-btn'>Submit now <img src={white_arrow} alt="" /></button>
             </form>
+            <span>{result}</span>
         </div>
     </div>
   )
