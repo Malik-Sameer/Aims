@@ -7,6 +7,19 @@ import location_icon from '../../assets/location-icon.png'
 import white_arrow from '../../assets/white-arrow.png'
 
 function Contact() {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+      
+        fetch("/", {
+          method: "POST",
+          body: new URLSearchParams(formData).toString(),
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        })
+          .then(() => alert("Form submitted successfully!"))
+          .catch((error) => console.error("Form submission error", error));
+      };
+      
 
 
 
@@ -23,7 +36,8 @@ function Contact() {
             </ul>
         </div>
         <div className="contact-col">
-            <form name='contact v1' method='POST' data-netlify="true" onSubmit="submit" netlify value="contact">
+            <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit}>
+            <input type="hidden" name="form-name" value="contact" />
                 <label>Your name</label>
                     <input type="text" name='name' placeholder="Enter your name" required/>
                     <label>Email</label>
